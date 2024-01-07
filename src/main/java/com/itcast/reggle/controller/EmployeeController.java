@@ -64,11 +64,11 @@ public class EmployeeController {
 
 //        set employee property
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        Long empId = (Long) request.getSession().getAttribute("employee");
-        employee.setCreateUser(empId);  // session id
-        employee.setUpdateUser(empId);
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        Long empId = (Long) request.getSession().getAttribute("employee");
+//        employee.setCreateUser(empId);  // session id
+//        employee.setUpdateUser(empId);
         employeeService.save(employee);
 
         return R.success("New employee added!");
@@ -94,8 +94,8 @@ public class EmployeeController {
     @PutMapping
     public R<String> updateStatus(HttpServletRequest request, @RequestBody Employee employee) {
         log.info("set employee status: {}", employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser((Long) request.getSession().getAttribute("employee"));
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser((Long) request.getSession().getAttribute("employee"));
         employeeService.updateById(employee);
         return R.success("Status updated!");
     }

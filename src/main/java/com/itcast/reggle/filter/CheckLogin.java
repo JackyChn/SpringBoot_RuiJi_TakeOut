@@ -1,6 +1,7 @@
 package com.itcast.reggle.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.itcast.reggle.common.BaseContext;
 import com.itcast.reggle.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -33,6 +34,8 @@ public class CheckLogin implements Filter {
 //        2. check if request needed to be filtered, no then pass, if login already, also pass
         if (checkURL(urls, requestURI) || request.getSession().getAttribute("employee") != null) {
 //            then pass
+            Long empId = (Long) request.getSession().getAttribute("employee");
+            BaseContext.setThreadLocal(empId);
             filterChain.doFilter(request, response);
             return;
         }
