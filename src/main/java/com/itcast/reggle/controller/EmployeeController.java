@@ -78,7 +78,7 @@ public class EmployeeController {
     public R<Page> pageQuery(int page, int pageSize, String name) {
         log.info("page: {}, pageSize: {}, name: {}", page, pageSize, name);
 //        page constructor
-        Page pageInfo = new Page<>();
+        Page<Employee> pageInfo = new Page<>(page, pageSize);
 
 //        condition constructor
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
