@@ -17,3 +17,5 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: ASSIGN_ID
+reggle:
+  path: D:\Study\Program Codes & Projects\Projects\Java Projects\03 Reggle TakeOut\Temp_path\
