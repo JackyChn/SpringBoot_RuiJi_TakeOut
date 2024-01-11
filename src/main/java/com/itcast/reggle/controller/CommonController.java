@@ -40,12 +40,12 @@ public class CommonController {
             path.mkdirs();
         }
 
-        String OriginalFileName = file.getOriginalFilename();  // abc.jpg
-        String suffix = OriginalFileName.substring(OriginalFileName.lastIndexOf('.'));  // suffix = ".jpg"
-        String fileName = UUID.randomUUID().toString() + suffix;
+        String originalFilename = file.getOriginalFilename();  // abc.jpg
+        String suffix = originalFilename.substring(originalFilename.lastIndexOf('.'));  // suffix = ".jpg"
+        String fileName = UUID.randomUUID().toString() + suffix;  // random fileName allocated with '.jpg' suffix
 //        use UUID to generate img name
         try {
-            file.transferTo(new File(basePath + fileName));
+            file.transferTo(new File(basePath + fileName));  // save the file under this path
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (IllegalStateException e) {
