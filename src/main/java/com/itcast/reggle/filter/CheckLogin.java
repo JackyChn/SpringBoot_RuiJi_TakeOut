@@ -28,14 +28,25 @@ public class CheckLogin implements Filter {
                 "/employee/login",
                 "/employee/logout",
                 "/backend/**",
-                "/frontend/**"
+                "/front/**",
+                "/common/**",
+                "/user/sendMsg",
+                "/user/login"
         };
 
 //        2. check if request needed to be filtered, no then pass, if login already, also pass
         if (checkURL(urls, requestURI) || request.getSession().getAttribute("employee") != null) {
 //            then pass
             Long empId = (Long) request.getSession().getAttribute("employee");
-            BaseContext.setThreadLocal(empId);
+            BaseContext.setCurrentId(empId);
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+//        mobile
+        if(request.getSession().getAttribute("user") != null) {
+            Long usrId = (Long) request.getSession().getAttribute("user");
+            BaseContext.setCurrentId(usrId);
             filterChain.doFilter(request, response);
             return;
         }
